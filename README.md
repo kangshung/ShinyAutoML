@@ -1,9 +1,6 @@
 # ShinyDataMining
 Shiny gun violence modelling application.
 
-Used algorithms:
-- logistic regression
-- decision tree
-- naive bayes
-- bagging
-- random forest
+The app is gonna be remade soon.
+
+It is still somewhat working, though.

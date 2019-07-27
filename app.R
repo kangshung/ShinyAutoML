@@ -63,144 +63,144 @@ ui <- fluidPage(
                       numericInput('mapsample', 'Choose the sample size:', 50, 10, 5000),
                       actionButton('clickmapupdate', 'Update'), br(),
                       leafletOutput('map')
-             ),
-             navbarMenu('Modelling',
-               tabPanel('Logistic regression',
-                        sidebarPanel(width = 3,
-                                     selectInput('y', 'Choose the dependent variable:', 'NA', selected = NULL),
-                                     selectInput('x', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
-                        ),
-                        mainPanel(width = 9,
-                                  tabsetPanel(
-                                    tabPanel('Model',
-                                      mainPanel(
-                                        div(verbatimTextOutput('summary'), style = "font-size:150px")
-                                      )
-                                    ),
-                                    tabPanel('Confusion matrix',
-                                      mainPanel(
-                                        div(verbatimTextOutput('confusionMatrix'), style = "font-size:150px")
-                                      )
-                                    ),
-                                    tabPanel('ROC curve',
-                                      mainPanel(
-                                        plotOutput('ROC', width = '1000px')
-                                      )
-                                    )
-                                  )
-                        )
-               ),
-               tabPanel('Decision tree',
-                        sidebarPanel(width = 3,
-                                     selectInput('ytree', 'Choose the dependent variable:', 'NA', selected = NULL),
-                                     selectInput('xtree', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
-                        ),
-                        mainPanel(width = 9,
-                                  tabsetPanel(
-                                    tabPanel('Model',
-                                             mainPanel(
-                                               div(verbatimTextOutput('summarytree'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('Confusion matrix',
-                                             mainPanel(
-                                               div(verbatimTextOutput('confusionMatrixtree'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('ROC curve',
-                                             mainPanel(
-                                               plotOutput('ROCtree', width = '1000px')
-                                             )
-                                    ),
-                                    tabPanel('Decision tree',
-                                             mainPanel(
-                                               plotOutput('dectree')
-                                             )
-                                    )
-                                  )
-                        )
-               ),
-               tabPanel('Naive bayes',
-                        sidebarPanel(width = 3,
-                                     selectInput('ynb', 'Choose the dependent variable:', 'NA', selected = NULL),
-                                     selectInput('xnb', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
-                        ),
-                        mainPanel(width = 9,
-                                  tabsetPanel(
-                                    tabPanel('Model',
-                                             mainPanel(
-                                               div(verbatimTextOutput('summarynb'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('Confusion matrix',
-                                             mainPanel(
-                                               div(verbatimTextOutput('confusionMatrixnb'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('ROC curve',
-                                             mainPanel(
-                                               plotOutput('ROCnb', width = '1000px')
-                                             )
-                                    )
-                                  )
-                        )
-               ),
-               tabPanel('Bagging',
-                        sidebarPanel(width = 3,
-                                     selectInput('yb', 'Choose the dependent variable:', 'NA', selected = NULL),
-                                     selectInput('xb', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
-                        ),
-                        mainPanel(width = 9,
-                                  tabsetPanel(
-                                    tabPanel('Model',
-                                             mainPanel(
-                                               div(verbatimTextOutput('summaryb'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('Confusion matrix',
-                                             mainPanel(
-                                               div(verbatimTextOutput('confusionMatrixb'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('ROC curve',
-                                             mainPanel(
-                                               plotOutput('ROCb', width = '1000px')
-                                             )
-                                    )
-                                  )
-                        )
-               ),
-               tabPanel('RandomForest',
-                        sidebarPanel(width = 3,
-                                     selectInput('yrf', 'Choose the dependent variable:', 'NA', selected = NULL),
-                                     selectInput('xrf', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
-                        ),
-                        mainPanel(width = 9,
-                                  tabsetPanel(
-                                    tabPanel('Model',
-                                             mainPanel(
-                                               div(verbatimTextOutput('summaryrf'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('Confusion matrix',
-                                             mainPanel(
-                                               div(verbatimTextOutput('confusionMatrixrf'), style = "font-size:150px")
-                                             )
-                                    ),
-                                    tabPanel('ROC curve',
-                                             mainPanel(
-                                               plotOutput('ROCrf', width = '1000px')
-                                             )
-                                    )
-                                  )
-                        )
-               )
-             ),
-             tabPanel('Models summary and comparison',
-                      DTOutput('comparison'),
-                      selectInput('whattoplot', 'What to plot?', NULL),
-                      div(plotlyOutput('comparisonplot', width = '700px'), align = 'center')
-                      )
+             )
+             # navbarMenu('Modelling',
+             #   # tabPanel('Logistic regression',
+             #   #          sidebarPanel(width = 3,
+             #   #                       selectInput('y', 'Choose the dependent variable:', 'NA', selected = NULL),
+             #   #                       selectInput('x', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
+             #   #          ),
+             #   #          mainPanel(width = 9,
+             #   #                    tabsetPanel(
+             #   #                      tabPanel('Model',
+             #   #                        mainPanel(
+             #   #                          div(verbatimTextOutput('summary'), style = "font-size:150px")
+             #   #                        )
+             #   #                      ),
+             #   #                      tabPanel('Confusion matrix',
+             #   #                        mainPanel(
+             #   #                          div(verbatimTextOutput('confusionMatrix'), style = "font-size:150px")
+             #   #                        )
+             #   #                      ),
+             #   #                      tabPanel('ROC curve',
+             #   #                        mainPanel(
+             #   #                          plotOutput('ROC', width = '1000px')
+             #   #                        )
+             #   #                      )
+             #   #                    )
+             #   #          )
+             #   # ),
+             #   tabPanel('Decision tree',
+             #            sidebarPanel(width = 3,
+             #                         selectInput('ytree', 'Choose the dependent variable:', 'NA', selected = NULL),
+             #                         selectInput('xtree', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
+             #            ),
+             #            mainPanel(width = 9,
+             #                      tabsetPanel(
+             #                        tabPanel('Model',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('summarytree'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('Confusion matrix',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('confusionMatrixtree'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('ROC curve',
+             #                                 mainPanel(
+             #                                   plotOutput('ROCtree', width = '1000px')
+             #                                 )
+             #                        ),
+             #                        tabPanel('Decision tree',
+             #                                 mainPanel(
+             #                                   plotOutput('dectree')
+             #                                 )
+             #                        )
+             #                      )
+             #            )
+             #   ),
+             #   tabPanel('Naive bayes',
+             #            sidebarPanel(width = 3,
+             #                         selectInput('ynb', 'Choose the dependent variable:', 'NA', selected = NULL),
+             #                         selectInput('xnb', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
+             #            ),
+             #            mainPanel(width = 9,
+             #                      tabsetPanel(
+             #                        tabPanel('Model',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('summarynb'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('Confusion matrix',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('confusionMatrixnb'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('ROC curve',
+             #                                 mainPanel(
+             #                                   plotOutput('ROCnb', width = '1000px')
+             #                                 )
+             #                        )
+             #                      )
+             #            )
+             #   ),
+             #   tabPanel('Bagging',
+             #            sidebarPanel(width = 3,
+             #                         selectInput('yb', 'Choose the dependent variable:', 'NA', selected = NULL),
+             #                         selectInput('xb', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
+             #            ),
+             #            mainPanel(width = 9,
+             #                      tabsetPanel(
+             #                        tabPanel('Model',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('summaryb'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('Confusion matrix',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('confusionMatrixb'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('ROC curve',
+             #                                 mainPanel(
+             #                                   plotOutput('ROCb', width = '1000px')
+             #                                 )
+             #                        )
+             #                      )
+             #            )
+             #   ),
+             #   tabPanel('RandomForest',
+             #            sidebarPanel(width = 3,
+             #                         selectInput('yrf', 'Choose the dependent variable:', 'NA', selected = NULL),
+             #                         selectInput('xrf', 'Choose the independent variable(s):', 'NA', multiple = T, selected = NULL)
+             #            ),
+             #            mainPanel(width = 9,
+             #                      tabsetPanel(
+             #                        tabPanel('Model',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('summaryrf'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('Confusion matrix',
+             #                                 mainPanel(
+             #                                   div(verbatimTextOutput('confusionMatrixrf'), style = "font-size:150px")
+             #                                 )
+             #                        ),
+             #                        tabPanel('ROC curve',
+             #                                 mainPanel(
+             #                                   plotOutput('ROCrf', width = '1000px')
+             #                                 )
+             #                        )
+             #                      )
+             #            )
+             #   )
+             # )
+             # # tabPanel('Models summary and comparison',
+             # #          DTOutput('comparison'),
+             # #          selectInput('whattoplot', 'What to plot?', NULL),
+             # #          div(plotlyOutput('comparisonplot', width = '700px'), align = 'center')
+             # #          )
   )
 )
 
@@ -223,15 +223,15 @@ server <- function(input, output, session) {
   observe({
     updateSelectInput(session, 'variabT', choices = colnames(data))
     updateSelectInput(session, 'y', choices = names(gun_violence)[str_detect(names(gun_violence), 'is_')])
-    updateSelectInput(session, 'x', choices = names(gun_violence)[!names(gun_violence) == input$y], selected = picked_vars)
+    updateSelectInput(session, 'x', choices = names(gun_violence)[!names(gun_violence) == input$y])
     updateSelectInput(session, 'ytree', choices = names(gun_violence)[str_detect(names(gun_violence), 'is_')])
-    updateSelectInput(session, 'xtree', choices = names(gun_violence)[!names(gun_violence) == input$y], selected = picked_vars)
+    updateSelectInput(session, 'xtree', choices = names(gun_violence)[!names(gun_violence) == input$y])
     updateSelectInput(session, 'ynb', choices = names(gun_violence)[str_detect(names(gun_violence), 'is_')])
-    updateSelectInput(session, 'xnb', choices = names(gun_violence)[!names(gun_violence) == input$y], selected = picked_vars)
+    updateSelectInput(session, 'xnb', choices = names(gun_violence)[!names(gun_violence) == input$y])
     updateSelectInput(session, 'yb', choices = names(gun_violence)[str_detect(names(gun_violence), 'is_')])
-    updateSelectInput(session, 'xb', choices = names(gun_violence)[!names(gun_violence) == input$y], selected = picked_vars)
+    updateSelectInput(session, 'xb', choices = names(gun_violence)[!names(gun_violence) == input$y])
     updateSelectInput(session, 'yrf', choices = names(gun_violence)[str_detect(names(gun_violence), 'is_')])
-    updateSelectInput(session, 'xrf', choices = names(gun_violence)[!names(gun_violence) == input$y], selected = picked_vars)
+    updateSelectInput(session, 'xrf', choices = names(gun_violence)[!names(gun_violence) == input$y])
     updateSelectInput(session, 'whattoplot', choices = names(tableend()))
   })
   
@@ -414,12 +414,11 @@ server <- function(input, output, session) {
   })
   
   tableend = reactive({
-    rbind(round(c(conmatrix()$overall[-(6:7)], conmatrix()$byClass[c(1,2,5)]), 3),
-          round(c(conmatrixnb()$overall[-(6:7)], conmatrixnb()$byClass[c(1,2,5)]), 3),
+    rbind(round(c(conmatrixnb()$overall[-(6:7)], conmatrixnb()$byClass[c(1,2,5)]), 3),
           round(c(conmatrixtree()$overall[-(6:7)], conmatrixtree()$byClass[c(1,2,5)]), 3),
           round(c(conmatrixb()$overall[-(6:7)], conmatrixb()$byClass[c(1,2,5)]), 3),
           round(c(conmatrixrf()$overall[-(6:7)], conmatrixrf()$byClass[c(1,2,5)]), 3)) %>% as_tibble %>% 
-      `rownames<-`(c('Logistic regression', 'Naive Bayes', 'Decision tree', 'Bagging of trees', 'Random forest'))
+      `rownames<-`(c('Naive Bayes', 'Decision tree', 'Bagging of trees', 'Random forest'))
   })
   
   output$comparison = renderDataTable({
