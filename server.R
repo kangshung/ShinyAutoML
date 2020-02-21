@@ -1,23 +1,42 @@
 function(input, output, session) {
-  output$no_of_NA_plot_id <- renderPlotly({
-    no_of_NA_plot
+  data <- reactive({
+    req(input$dataset)
+    fread(input$dataset$datapath, stringsAsFactors = T)
   })
   
-  gv_variables <- reactive({
-    gv_variables_chosen <- input$gv_variables_id
-    gv[, ..gv_variables_chosen]
+  output$NAplot <- renderPlotly({
+    
+    
+    # no_of_NA_plot <- plot_ly(no_of_NA) %>% 
+    #     add_bars(x = ~V2, y = ~V1) %>% 
+    #     layout(xaxis = list(title = 'Number of observations'),
+    #            yaxis = list(title = ''), title = 'Number of empty fields in variables')
+    
+    
   })
   
-  output$gv_table_id <- renderDataTable({
-    gv_variables()
+  # as.data.table(unlist(lapply(data(), function(x) sum(is.na(x)))), T)[V2 > 0][, V1 := reorder(V1, V2)][]
+  
+  
+  output$datatable <- renderDT({
+    data()
   })
   
-  gv_cleaned_variables <- reactive({
-    gv_cleaned_variables_chosen <- input$gv_cleaned_variables_id
-    gv_cleaned[, ..gv_cleaned_variables_chosen]
+  observe({
+    shiny::updateSelectInput(session, "response", choices = names(data()))
+    shiny::updateSelectInput(session, "independent", choices = names(data()))
   })
   
-  output$gv_cleaned_table_id <- renderDataTable({
-    gv_cleaned_variables()
+  h2o_data <- reactive(as.h2o(data()))
+  
+  leaderboard <- eventReactive(input$automl, {
+    withProgress(
+      message = "Running AutoML",
+      h2o.automl(input$independent, input$response, h2o_data(), max_runtime_secs = input$seconds)
+    )
+  })
+  
+  output$leaderboard <- renderPrint({
+    leaderboard()@leaderboard
   })
 }

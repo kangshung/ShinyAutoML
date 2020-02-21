@@ -1,13 +1,6 @@
-if (!require('pacman')) install.packages('pacman')
-pacman::p_load(shiny, qs, magrittr, data.table, plotly, here, h2o)
+# if (!require('pacman')) install.packages('pacman')
+# pacman::p_load(shiny, DT, data.table, h2o, DT, magrittr, plotly, here)
+library(shiny); library(data.table); library(h2o); library(DT); library(magrittr); library(plotly); library(here)
 
-gv <- qread(here::here('datasets', 'gun_violence.qs'))
-gv_cleaned <- qread(here::here('datasets', 'gun_violence_cleaned.qs'))
-
-no_of_NA <- as.data.table(unlist(lapply(gv, function(x) sum(is.na(x)))), T)[V2 > 0]
-no_of_NA[, V1 := reorder(V1, V2)]
-
-no_of_NA_plot <- plot_ly(no_of_NA) %>% 
-  add_bars(x = ~V2, y = ~V1) %>% 
-  layout(xaxis = list(title = 'Number of observations'),
-         yaxis = list(title = ''), title = 'Number of empty fields in variables')
+h2o.init()
+h2o.no_progress()
