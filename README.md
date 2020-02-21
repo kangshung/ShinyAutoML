@@ -1,6 +1,2 @@
-# ShinyDataMining
-Shiny gun violence modelling application.
-
-The app is gonna be remade soon.
-
-It is still somewhat working, though.
+# ShinyAutoML
+The Shiny application for Automated Machine Learning with h2o.ai
